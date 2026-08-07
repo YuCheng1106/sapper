@@ -1,0 +1,14 @@
+.env
+.git
+.idea
+.pytest_cache
+.ruff_cache
+__pycache__
+*.py[cod]
+*.log
+files
+log
+test
+**/.ipynb_checkpoints
+**/third_party_lib/mineru/demo
+**/third_party_lib/mineru/tests

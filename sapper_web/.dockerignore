@@ -1,0 +1,8 @@
+.env
+.env.*
+.git
+.idea
+node_modules
+dist
+npm-debug.log*
+pnpm-debug.log*

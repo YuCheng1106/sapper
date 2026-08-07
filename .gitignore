@@ -3,6 +3,7 @@
 .env.*
 !.env.example
 !.env.template
+!.env.docker.example
 !**/.env.example
 !**/.env.template
 ssl/

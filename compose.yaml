@@ -1,0 +1,178 @@
+name: sapper
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-sapper}
+      MYSQL_USER: ${MYSQL_USER:-sapper}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      TZ: ${TZ:-Asia/Shanghai}
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "${BIND_HOST:-127.0.0.1}:${MYSQL_EXPOSE_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  sapper-server:
+    build:
+      context: ./sapper_server
+    restart: unless-stopped
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-dev}
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: ${MYSQL_USER:-sapper}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-sapper}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ""
+      REDIS_DATABASE: 0
+      TOKEN_SECRET_KEY: ${TOKEN_SECRET_KEY:?Set TOKEN_SECRET_KEY in .env}
+      OPERA_LOG_ENCRYPT_SECRET_KEY: ${OPERA_LOG_ENCRYPT_SECRET_KEY:?Set OPERA_LOG_ENCRYPT_SECRET_KEY in .env}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      OPENAI_KEY: ${OPENAI_KEY:-}
+      OPENAI_KEY_LIST: ${OPENAI_KEY_LIST:-[]}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      DOUBAO_KEY: ${DOUBAO_KEY:-}
+      OAUTH2_GITHUB_CLIENT_ID: ${OAUTH2_GITHUB_CLIENT_ID:-}
+      OAUTH2_GITHUB_CLIENT_SECRET: ${OAUTH2_GITHUB_CLIENT_SECRET:-}
+      OAUTH2_LINUX_DO_CLIENT_ID: ${OAUTH2_LINUX_DO_CLIENT_ID:-}
+      OAUTH2_LINUX_DO_CLIENT_SECRET: ${OAUTH2_LINUX_DO_CLIENT_SECRET:-}
+      SECRET_ID: ${SECRET_ID:-}
+      SECRET_KEY: ${SECRET_KEY:-}
+      REGION: ${REGION:-}
+      COS_SESSION_TOKEN: ${COS_SESSION_TOKEN:-}
+      XFYUN_APP_ID: ${XFYUN_APP_ID:-}
+      XFYUN_SECRET_KEY: ${XFYUN_SECRET_KEY:-}
+      WKHTMLTOPDF: /usr/bin/wkhtmltopdf
+      WKHTMLTOIMAGE: /usr/bin/wkhtmltoimage
+      EMBEDDING_MODEL_PATH: /models/embedding
+      PUBLIC_FILE_URL: ${PUBLIC_FILE_URL:-http://localhost:8008/server/files}
+    ports:
+      - "${BIND_HOST:-127.0.0.1}:${SAPPER_SERVER_PORT:-8006}:8006"
+    volumes:
+      - server_files:/app/files
+      - server_logs:/app/log
+      - ${EMBEDDING_MODEL_HOST_PATH:-./embed_model}:/models/embedding:ro
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8006/server/api/v1/health/proxy', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  sapper-backend:
+    build:
+      context: ./sapper_backend
+    restart: unless-stopped
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-dev}
+      DATABASE_TYPE: mysql
+      DATABASE_HOST: mysql
+      DATABASE_PORT: 3306
+      DATABASE_USER: ${MYSQL_USER:-sapper}
+      DATABASE_PASSWORD: ${MYSQL_PASSWORD}
+      DATABASE_SCHEMA: ${MYSQL_DATABASE:-sapper}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ""
+      REDIS_DATABASE: 0
+      TOKEN_SECRET_KEY: ${TOKEN_SECRET_KEY}
+      OPERA_LOG_ENCRYPT_SECRET_KEY: ${OPERA_LOG_ENCRYPT_SECRET_KEY}
+      OAUTH2_GITHUB_CLIENT_ID: ${OAUTH2_GITHUB_CLIENT_ID:-}
+      OAUTH2_GITHUB_CLIENT_SECRET: ${OAUTH2_GITHUB_CLIENT_SECRET:-}
+      OAUTH2_LINUX_DO_CLIENT_ID: ${OAUTH2_LINUX_DO_CLIENT_ID:-}
+      OAUTH2_LINUX_DO_CLIENT_SECRET: ${OAUTH2_LINUX_DO_CLIENT_SECRET:-}
+      OAUTH2_AI_JXNU_URL: ${OAUTH2_AI_JXNU_URL:-}
+      OAUTH2_AI_JXNU_AES_KEY: ${OAUTH2_AI_JXNU_AES_KEY:-}
+      CELERY_BROKER_REDIS_DATABASE: 1
+      CELERY_BACKEND_REDIS_DATABASE: 2
+      CELERY_RABBITMQ_HOST: rabbitmq
+      CELERY_RABBITMQ_PORT: 5672
+      CELERY_RABBITMQ_USERNAME: guest
+      CELERY_RABBITMQ_PASSWORD: guest
+      SECRET_ID: ${SECRET_ID:-}
+      SECRET_KEY: ${SECRET_KEY:-}
+      REGION: ${REGION:-}
+      ROBOT_SERVICE_URL: ${ROBOT_SERVICE_URL:-}
+      ROBOT_SERVICE_TOKEN: ${ROBOT_SERVICE_TOKEN:-}
+      ROBOT_DEFAULT_ID: ${ROBOT_DEFAULT_ID:-}
+      SAPPER_BACKEND_URL: http://sapper-backend:8007/api/v1/
+      SAPPER_SERVER_URL: http://sapper-server:8006/server/api/v1/
+      CORS_ALLOWED_ORIGINS: '["http://localhost:8008"]'
+    ports:
+      - "${BIND_HOST:-127.0.0.1}:${SAPPER_BACKEND_PORT:-8007}:8007"
+    volumes:
+      - backend_uploads:/app/static/upload
+      - backend_logs:/app/log
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      sapper-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8007/docs', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 45s
+
+  sapper-web:
+    build:
+      context: ./sapper_web
+    restart: unless-stopped
+    environment:
+      VITE_API_BASE_URL: /
+      VITE_RUNTIME_API_BASE_URL: /server/
+      VITE_AGENT_API_BASE_URL: /api/v1/sapper/sapperchain/api/
+    ports:
+      - "${BIND_HOST:-127.0.0.1}:${SAPPER_WEB_PORT:-8008}:80"
+    depends_on:
+      sapper-backend:
+        condition: service_healthy
+      sapper-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_data:
+  redis_data:
+  backend_uploads:
+  backend_logs:
+  server_files:
+  server_logs:
