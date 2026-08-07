@@ -1,0 +1,49 @@
+
+.sidebar {
+  background: #fff;
+  border-right: 1px solid #dbd7d7;
+}
+
+.back-button {
+  padding: 16px;
+}
+
+.exbase-info {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #dbd7d7;
+  /*background: #f0f2f5;*/
+}
+
+.experience-header {
+  background: white;
+  padding: 0 16px;
+}
+
+.experience-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.experience-header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.experience-content {
+  padding: 1px;
+}
+
+.status.ready {
+  color: green;
+}
+
+.status.not-ready {
+  color: red;
+}
+
+.experience-content-layout {
+  background-color: white;
+}

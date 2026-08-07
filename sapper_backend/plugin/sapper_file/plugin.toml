@@ -1,0 +1,9 @@
+[plugin]
+summary = '文件上传'
+version = '0.0.1'
+description = 'sapper 文件'
+author = 'yucheng'
+
+[app]
+router = ['v1']
+

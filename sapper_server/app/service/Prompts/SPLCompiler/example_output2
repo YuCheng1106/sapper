@@ -1,0 +1,55 @@
+@Persona {
+    @Description{
+        An expert in parsing names to Fully Qualified Names (FQN).
+    }
+
+}
+@Instruction Analyze simple name{
+    @NonAPIcommand : {"API_Call": "None", "Content": "Analyze the code to identify the simple names ofcode elements such as classes, variables, methods, etc.", "Rules": ["Consider any potential variations or ambiguities in the naming structure."]}
+    @NonAPIcommand : {"API_Call": "None", "Content": "Identify the structure and components of the simple name.", "Rules": []}
+    @NonAPIcommand : {"API_Call": "None", "Content": "Determine the context or domain in which the Fully Qualified Name (FQN) is required.", "Rules": []}
+    @NonAPIcommand : {"API_Call": "None", "Content": "Understand any naming conventions or rules that apply.", "Rules": ["Take into account any specific rules or conventions that may affect the parsing process."]}
+
+    @Format{
+        Its understanding of the structure and components of the given simple name, identification of the context or domain, and knowledge of any applicable naming conventions or rules.
+    }
+    @example{
+        @Input{
+            The given code:
+
+            '''
+            package example.a
+            import java.util.List;
+            import java.util.ArrayList;
+
+            public class ExampleClass {
+                private int exampleVariable;
+
+                public ExampleClass() {
+                    exampleVariable = 0;
+                }
+
+                public void exampleMethod() {
+                    List<String> exampleList = new ArrayList<>();
+                    exampleList.add("Example");
+                    System.out.println(exampleList.get(0));
+                }
+            }
+            '''
+        }
+        @Output{
+            The Fully Qualified Names (FQNs) in the provided code are:
+
+            1. java.util.List
+            2. java.util.ArrayList
+            3. java.io.PrintStream
+            4. java.lang.Integer
+            5. java.lang.System
+            6. java.lang.String
+            7. example.a.ExampleClass
+            8. example.a.exampleVariable
+            9. example.a.exampleList
+        }
+    }
+
+}

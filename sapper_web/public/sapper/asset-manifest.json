@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "https://www.promptsapper.tech/sappercommunity/static/css/main.90befcf4.css",
+    "main.js": "https://www.promptsapper.tech/sappercommunity/static/js/main.865d24f6.js",
+    "index.html": "https://www.promptsapper.tech/sappercommunity/index.html",
+    "main.90befcf4.css.map": "https://www.promptsapper.tech/sappercommunity/static/css/main.90befcf4.css.map",
+    "main.865d24f6.js.map": "https://www.promptsapper.tech/sappercommunity/static/js/main.865d24f6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.90befcf4.css",
+    "static/js/main.865d24f6.js"
+  ]
+}

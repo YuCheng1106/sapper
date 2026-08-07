@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "read_file_server": {
+      "command": "uv",
+      "args": [
+        "run",
+        "E:/public_tech_lib/file_module/server_module/file_read_server"
+      ]
+    },
+    "file_convert_server": {
+      "command": "uv",
+      "args": [
+        "run",
+        "E:/public_tech_lib/file_module/server_module/file_convert_server"
+      ]
+    },
+    "read_local_resource_server": {
+      "command": "uv",
+      "args": [
+        "run",
+        "E:/public_tech_lib/file_module/server_module/file_scheduling_server"
+      ]
+    }
+  }
+}

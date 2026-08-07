@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录表单</title>
+    <link rel="stylesheet" href="../static/css/admin_style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <!-- https://fontawesome.com/v5/search?s=solid%2Cbrands -->
+</head>
+<body>
+<img src="../static/image/img/wave.png" class="wave">
+<a href="/"><img src="../static/image/icon/back.svg" style="width: 60px"></a>
+<div class="container">
+    <div class="img">
+        <img src="../static/image/img/bg.svg" alt="">
+    </div>
+    <div class="login-content">
+        <form id="lg_page" method="post" action="/adminCheck">
+            <img src="../static/image/img/avatar.svg" alt="">
+            <h2 class="title">欢迎，请登录</h2>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <h5>用户名</h5>
+                    <input type="text" name="username" class="input">
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <h5>密码</h5>
+                    <input type="password" name="password" class="input">
+                </div>
+            </div>
+            <a id="goto_rg" style="text-align: left;position: absolute;cursor: pointer">不是管理员？前往注册...</a>
+            <a href="#">忘记密码?</a>
+            <input type="submit" class="btn" value="登录">
+            <p style="color: red;">{{error}}</p>
+        </form>
+        <div id="rg_page" style="width: 50%;position: relative;top: -5%;display: none">
+            <h2 class="title">欢迎，请注册</h2>
+            <p style="color: red;">{{error}}</p>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <h5>输入用户名</h5>
+                    <input type="text" id="username" class="input">
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <h5>输入密码</h5>
+                    <input type="password" id="new_password" class="input">
+                </div>
+            </div>
+            <div class="input-div re_pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <h5>确认密码</h5>
+                    <input type="password" id="re_password" class="input">
+                </div>
+            </div>
+            <div class="input-div e-mail">
+                <div class="i">
+                    <i class="fas fa-mail-bulk"></i>
+                </div>
+                <div class="div">
+                    <h5>输入邮箱</h5>
+                    <input type="text" id="phone" class="input">
+                </div>
+            </div>
+            <div class="input-div verification">
+                <div class="i">
+                    <i class="fas fa-mail-bulk"></i>
+                </div>
+                <div class="div">
+                    <h5>请输入验证码</h5>
+                    <input type="text" id="auth_code" class="input">
+                    <button id="send_btn" class="btn"
+                            style="width: 40%;height: 40px;position:absolute;right: 5%;top: -30%">获取验证码
+                    </button>
+                    <!-- 提示信息的容器 -->
+                    <div id="buttonHint"></div>
+                </div>
+            </div>
+            <a id="goto_lg" style="text-align: left;cursor: pointer">已注册？前往登录...</a>
+            <input id="register_btn" type="submit" class="btn" value="注册"
+                   style="background-image: linear-gradient(to right,#bcf1dd,#bdf4ec,#97e3c9);" disabled="disabled">
+        </div>
+    </div>
+</div>
+<script src="../static/js/admin_main.js"></script>
+<script>
+    // 获取按钮和提示信息的元素
+    var sendButton = document.getElementById('send_btn');
+    var buttonHint = document.getElementById('buttonHint');
+    var lgButton = document.getElementById('goto_lg');
+    var rgButton = document.getElementById('goto_rg');
+    var rgPage = document.getElementById('rg_page');
+    var lgPage = document.getElementById('lg_page');
+
+    // 鼠标悬停时显示提示信息
+    sendButton.addEventListener('mouseover', function () {
+        showButtonHint();
+    });
+
+    // 鼠标移出时隐藏提示信息
+    sendButton.addEventListener('mouseout', function () {
+        hideButtonHint();
+    });
+
+    // 点击按钮时显示提示信息
+    sendButton.addEventListener('click', function (event) {
+        showButtonHint(event.clientX, event.clientY);
+    });
+
+    // 切换登录和注册
+    rgButton.addEventListener('click', function () {
+        rgPage.style.display = 'block';
+        lgPage.style.display = 'none';
+    });
+
+    lgButton.addEventListener('click', function () {
+        rgPage.style.display = 'none';
+        lgPage.style.display = 'block';
+    });
+
+    // 显示提示信息的函数
+    function showButtonHint(x, y) {
+        // 设置提示信息的位置
+        if (x !== undefined && y !== undefined) {
+            buttonHint.style.left = x + 'px';
+            buttonHint.style.top = y + 'px';
+        }
+        // 显示提示信息
+        buttonHint.style.display = 'block';
+        buttonHint.innerHTML = '验证码的有效时长为15分钟，请勿重复点击！';
+    }
+
+    // 隐藏提示信息的函数
+    function hideButtonHint() {
+        // 隐藏提示信息
+        buttonHint.style.display = 'none';
+    }
+</script>
+</body>
+</html>

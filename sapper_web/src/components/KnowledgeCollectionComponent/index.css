@@ -1,0 +1,72 @@
+.knowledge-collection-container {
+    padding: 20px;
+    height: calc(100vh - 40px);
+    background: #fff;
+}
+
+.collection-header {
+    background: none;
+    padding: 0;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.title-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.file-count {
+    color: #666;
+    font-size: 14px;
+}
+
+.search-input {
+    width: 300px;
+}
+
+.collection-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.collection-tabs .ant-tabs-nav {
+    margin-bottom: 0;
+}
+
+.collection-action-buttons {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .collection-action-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

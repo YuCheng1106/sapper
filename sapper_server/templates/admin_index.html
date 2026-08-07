@@ -1,0 +1,565 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Administrator</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="../static/admin/assets/css/main.css"/>
+    <noscript>
+        <link rel="stylesheet" href="../static/admin/assets/css/noscript.css"/>
+    </noscript>
+    <style>
+        #edit_role {
+            width: 100%;
+            height: auto;
+            font-weight: 500;
+            background-color: #ffffff;
+            padding: 0;
+            color: #000000;
+        }
+
+        /* 背景遮罩层样式 */
+        #over-lay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* 设置遮罩层的 z-index 值为 9999 */
+        }
+
+        /* 弹窗样式 */
+        #modal {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10000; /* 设置弹窗的 z-index 值为 10000 */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 按钮样式 */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+    </style>
+    <style>
+        /* 搜索框和添加按钮布局样式 */
+        .search-add-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search-container {
+            width: 50%;
+            position: relative;
+        }
+
+        #search-box{
+            border-radius: 30px; /* 使搜索框更加圆润 */
+            width: 99%; /* 根据需要调整搜索框的宽度 */
+        }
+
+        .search-box {
+            border: none;
+            outline: none;
+            padding: 8px 40px 8px 16px; /* 通过调整 padding 来控制搜索框内部内容位置 */
+            background-color: transparent;
+            color: #333; /* 设置搜索框文字颜色 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影效果增加高级感 */
+            font-size: 14px; /* 设置字体大小 */
+            transition: background-color 0.3s ease; /* 添加过渡效果 */
+        }
+
+        .search-box::placeholder {
+            color: #999; /* 设置占位符文字颜色 */
+        }
+
+        .search-btn {
+            position: absolute;
+            top: 30%;
+            right: 10px;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影效果增加高级感 */
+            transition: background-color 0.3s ease; /* 添加过渡效果 */
+        }
+    </style>
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <span class="icon fa-gem"></span>
+        </div>
+        <div class="content">
+            <div class="inner">
+                <h1>Administrator</h1>
+                <p>欢迎来到教育智能体系统管理层<br>
+                    在这里您可以对系统层面进行管理</p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#keyManage">KEY管理</a></li>
+                <li><a href="#keyApplication">用户申请</a></li>
+<!--                <li><a href="#contact">Contact</a></li>-->
+                <li><a href="/admin_login_out">退出管理</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main">
+        <!--KEY管理-->
+        <article id="keyManage">
+            <div style="display: flex;justify-content:space-between;width: 100%" class="role-login-key">
+                <div class="field half">
+                    <input type="radio" id="demo-priority-admin" name="demo-priority" checked>
+                    <label for="demo-priority-admin">管理员</label>
+                </div>
+                <div class="field half">
+                    <input type="radio" id="demo-priority-user" name="demo-priority">
+                    <label for="demo-priority-user">用户</label>
+                </div>
+            </div>
+            <h2 class="major">KEY列表</h2>
+            <div class="search-add-container">
+                <div class="search-container">
+                    <input id="search-box" type="text" class="search-box" placeholder="搜索账号...">
+                    <ul class="icons search-btn">
+                        <li><a id="search-icon" class="fa fa-search"></a></li>
+                    </ul>
+                    <div class="field half"  style="padding-left: 0.5rem">
+                        <input type="checkbox" id="rts" name="rts">
+                        <label for="rts" style="padding-left: 2rem">实时搜索</label>
+                    </div>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="alt">
+                    <thead>
+                    <tr>
+                        <th style="width: 30%">账号</th>
+                        <th style="width: 30%">姓名</th>
+                        <th style="width: 20%">KEY</th>
+                        <th style="width: 40%">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody class="user-list">
+
+                    </tbody>
+                </table>
+            </div>
+        </article>
+        <!--KEY申请-->
+        <article id="keyApplication">
+            <h2 class="major">KEY申请列表</h2>
+            <div class="search-add-container">
+                <div class="search-container">
+                    <input id="search-box2" type="text" class="search-box" placeholder="搜索账号...">
+                    <ul class="icons search-btn">
+                        <li><a id="search-icon2" class="fa fa-search"></a></li>
+                    </ul>
+                    <div class="field half"  style="padding-left: 0.5rem">
+                        <input type="checkbox" id="rts2" name="rts">
+                        <label for="rts" style="padding-left: 2rem">实时搜索</label>
+                    </div>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="alt">
+                    <thead>
+                    <tr>
+                        <th style="width: 30%">账号</th>
+                        <th style="width: 30%">姓名</th>
+                        <th style="width: 20%">KEY</th>
+                        <th style="width: 40%">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody class="user-list">
+
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </div>
+</div>
+
+<!-- BG -->
+<div id="bg"></div>
+
+<!-- Scripts -->
+<script src="../static/admin/assets/js/jquery.min.js"></script>
+<script src="../static/admin/assets/js/browser.min.js"></script>
+<script src="../static/admin/assets/js/breakpoints.min.js"></script>
+<script src="../static/admin/assets/js/util.js"></script>
+<script src="../static/admin/assets/js/main.js"></script>
+</body>
+<script>
+    let modalAction = ''; // 保存模态框的文本
+    // 定义生成一行数据的函数
+    function generate_tr(user, ph, pw) {
+        var tr = $("<tr></tr>");
+        var username = $("<td></td>");
+        var phone = $("<td></td>");
+        var password = $("<td></td>");
+        var operation = $("<td></td>");
+        operation.attr("style", "display:flex;justify-content:space-between;width:100%");
+        var edit = $("<a></a>");
+        var del = $("<a></a>");
+        username.text(user);
+        phone.text(ph);
+        password.text(pw);
+        edit.attr("class", "button small edit");
+        edit.text("编辑");
+        del.attr("class", "button small delete");
+        del.text("删除");
+        operation.append(edit);
+        operation.append(del);
+        tr.append(username);
+        tr.append(phone);
+        tr.append(password);
+        tr.append(operation);
+        $(".user-list").append(tr);
+    }
+
+    function generate_key_tr(user, name, KEY) {
+        var tr = $("<tr></tr>");
+        var user_id = $("<td></td>");
+        var username = $("<td></td>");
+        var KEY_ID = $("<td></td>");
+        var operation = $("<td></td>");
+        operation.attr("style", "display:flex;justify-content:space-between;width:100%");
+        var edit = $("<a></a>");
+        var del = $("<a></a>");
+        user_id.text(user);
+        username.text(name);
+        KEY_ID.text(KEY);
+        edit.attr("class", "button small edit");
+        edit.text("编辑");
+        del.attr("class", "button small delete");
+        del.text("删除");
+        operation.append(edit);
+        operation.append(del);
+        tr.append(user_id);
+        tr.append(username);
+        tr.append(KEY_ID);
+        tr.append(operation);
+        $(".key-list").append(tr);
+    }
+
+    // 定义发送AJAX请求获取用户数据的函数
+    function askajax(role) {
+        $.ajax({
+            url: "/show/" + role,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                $(".user-list").empty();
+                for (var i = 0; i < data.length; i++) {
+                    generate_tr(data[i].user, data[i].phone, data[i].password);
+                }
+                $(".key-list").empty();
+                for (var j = 0; j < data.length; j++) {
+                    generate_key_tr(data[j].user, data[j].name, data[j].key_id);
+                }
+            },
+            error: function (data) {
+                console.log(data);
+                alert("error");
+            }
+        });
+    }
+
+    function toggleEditMode(row) {
+        const cells = row.querySelectorAll('td');
+        cells.forEach((cell, index) => {
+            if (index === cells.length - 1) {
+                updateButton('edit', '提交', 'submit', cell);
+                createCancelButton(cell);
+                hideButton('delete', cell);
+            } else {
+                makeCellEditable(cell);
+            }
+        });
+    }
+
+    function toggleViewMode(row) {
+        console.log('切换到查看模式');
+        const cells = row.querySelectorAll('td');
+        cells.forEach((cell, index) => {
+            if (index === cells.length - 1) {
+                updateButton('submit', '编辑', 'edit', cell);
+                removeButton('cancel', cell);
+                showButton('delete', cell);
+            } else {
+                restoreCellContent(cell);
+            }
+        });
+    }
+
+    function updateButton(oldClass, newText, newClass, cell) {
+        const button = cell.querySelector(`.${oldClass}`);
+        button.innerText = newText;
+        button.classList.remove(oldClass);
+        button.classList.add(newClass);
+    }
+
+    function createCancelButton(cell) {
+        const cancelButton = document.createElement('a');
+        cancelButton.innerText = '取消';
+        cancelButton.classList.add('button', 'small', 'cancel');
+        cell.appendChild(cancelButton);
+    }
+
+    function makeCellEditable(cell) {
+        const cellText = cell.innerText;
+        cell.innerHTML = `<input id="edit_role" type="text" value="${cellText}" />`;
+    }
+
+    function hideButton(buttonClass, cell) {
+        const button = cell.querySelector(`.${buttonClass}`);
+        if (button) button.style.display = 'none';
+    }
+
+    function showButton(buttonClass, cell) {
+        const button = cell.querySelector(`.${buttonClass}`);
+        if (button) button.style.display = '';
+    }
+
+    function removeButton(buttonClass, cell) {
+        const button = cell.querySelector(`.${buttonClass}`);
+        if (button) button.remove();
+    }
+
+    function restoreCellContent(cell) {
+        const inputElement = cell.querySelector('input');
+        cell.innerHTML = inputElement.value;
+    }
+
+    function submitEdit(row, role, model) {
+        const cells = row.querySelectorAll('td');
+        var data;
+        if(model === 'delete'){
+            data = {
+                user: cells[0].innerText,
+                phone: cells[1].innerText,
+                password: cells[2].innerText,
+                model:model
+            };
+        }else if (model === 'edit' || model === 'add'){
+            data = {
+                user: cells[0].querySelector('input').value,
+                phone: cells[1].querySelector('input').value,
+                password: cells[2].querySelector('input').value,
+                model:model
+            };
+        }
+        var str='/edit/'+role;
+        fetch(str, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === '200') {
+                    console.log('Success:', data);
+                    if (model === 'edit'){
+                        toggleViewMode(row);
+                    }if (model === 'add'){
+                        modalAction =''; // 重置模态框的文本
+                        toggleViewMode(row);
+                    }
+                } else {
+                    alert('Edit failed.The server returns a value of '+data.code)
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert("An error occurred while transferring data to the server")
+            });
+    }
+
+    // 页面加载完成后的操作
+    $(document).ready(function () {
+        askajax('admin')
+        // 获取具有class="role-login"的盒子
+        const roleLoginBox = document.querySelector('.role-login');
+        // 获取所有radio输入框
+        const radioInputs = roleLoginBox.querySelectorAll('input[type="radio"]');
+        //获得角色类型
+        var role = 'admin';
+        // 添加事件监听器
+        radioInputs.forEach(input => {
+            input.addEventListener('change', () => {
+                // 根据选中的不同选项执行不同的操作
+                if (input.id === 'demo-priority-admin' && input.checked) {
+                    // 管理员选项被选中时的操作
+                    console.log('管理员选项被选中');
+                    askajax('admin')
+                    role = 'admin';
+                } else if (input.id === 'demo-priority-user' && input.checked) {
+                    // 教师选项被选中时的操作
+                    console.log('用户选项被选中');
+                    askajax('tea')
+                    role = 'tea';
+                }
+            });
+        });
+
+        // 处理编辑按钮的点击事件（委托给 tbody 元素）
+        const tbody = document.querySelector('tbody');
+        const overlay = document.getElementById('over-lay');
+        const confirmButton = document.getElementById('confirmButton');
+        const cancelButton = document.getElementById('cancelButton');
+        const modalText = document.getElementById('modalText');
+        let currentRow = null; // 用于保存当前操作的行
+
+        // 通用的模态框处理函数
+        function showModal(action, row) {
+            overlay.style.display = 'flex';
+            if (modalAction === '添加') {
+                modalText.innerText = '您确定添加新用户吗？';
+            }else {
+                modalAction = action;
+            modalText.innerText = '您确定要' + action + '吗？';
+            }
+            currentRow = row; // 保存当前操作的行
+
+            // 解绑确认按钮点击事件处理程序，避免重复绑定
+            confirmButton.removeEventListener('click', confirmSubmission);
+            // 解绑取消按钮点击事件处理程序，避免重复绑定
+            cancelButton.removeEventListener('click', cancelSubmission);
+
+            // 绑定确认按钮点击事件处理程序
+            confirmButton.addEventListener('click', confirmSubmission);
+            // 绑定取消按钮点击事件处理程序
+            cancelButton.addEventListener('click', cancelSubmission);
+        }
+
+        // 点击取消按钮时触发的函数
+        function cancelSubmission() {
+            console.log('取消');
+            overlay.style.display = 'none';
+        }
+
+        // 点击确定按钮时触发的函数
+        function confirmSubmission() {
+            console.log('成功');
+            if (modalAction === '提交') {
+                submitEdit(currentRow, role, 'edit');
+            } else if (modalAction === '删除') {
+                submitEdit(currentRow, role, 'delete');
+                currentRow.remove();
+            } else if (modalAction === '添加') {
+                submitEdit(currentRow, role, 'add');
+            }
+            overlay.style.display = 'none';
+        }
+
+        tbody.addEventListener('click', (event) => {
+            const target = event.target;
+            const row = target.closest('tr');
+
+            if (target.classList.contains('edit')) {
+                toggleEditMode(row);
+            } else if (target.classList.contains('cancel')) {
+                console.log('modalAction:'+modalAction);
+                if (modalAction === '添加'){
+                    console.log('添加已经重置');
+                    modalAction =''; // 重置模态框的文本
+                }
+                toggleViewMode(row);
+            } else if (target.classList.contains('submit')) {
+                showModal('提交', row);
+            } else if (target.classList.contains('delete')) {
+                showModal('删除', row);
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchBox = document.getElementById("search-box");
+        const searchIcon = document.getElementById("search-icon");
+        const addRowButton = document.getElementById("add-row"); // 获取fa-plus按钮元素
+        const tbody = document.querySelector('tbody');
+        let isRealTimeSearch = false;
+
+        function performSearch() {
+            const searchText = searchBox.value.trim().toLowerCase();
+            const rows = tbody.querySelectorAll("tr");
+
+            rows.forEach(function (row) {
+                const tdTexts = Array.from(row.querySelectorAll("td")).map(td => td.textContent.trim().toLowerCase());
+
+                if (tdTexts[0].includes(searchText) || tdTexts[1].includes(searchText)) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
+        function toggleRealTimeSearch() {
+            isRealTimeSearch = !isRealTimeSearch;
+
+            if (isRealTimeSearch) {
+                searchBox.addEventListener("input", performSearch);
+            } else {
+                searchBox.removeEventListener("input", performSearch);
+            }
+        }
+
+        function addRow() {
+            // 创建新的<tr>元素
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td style="display: flex;justify-content:space-between;width: 100%">
+                    <a class="button small edit">编辑</a>
+                    <a class="button small delete">删除</a>
+                </td>
+            `;
+
+            // 将新行添加到<tbody>的第一个子元素位置
+            tbody.insertBefore(newRow, tbody.firstChild);
+            modalAction = '添加';
+            toggleEditMode(newRow);
+        }
+
+        searchIcon.addEventListener("click", function (event) {
+            event.preventDefault();
+            performSearch();
+        });
+
+        const realTimeSearchCheckbox = document.getElementById("rts");
+        realTimeSearchCheckbox.addEventListener("click", toggleRealTimeSearch);
+
+        // 给fa-plus按钮添加点击事件监听器
+        addRowButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            addRow();
+        });
+    });
+</script>
+</html>

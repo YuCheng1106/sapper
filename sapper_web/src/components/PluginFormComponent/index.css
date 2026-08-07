@@ -1,0 +1,52 @@
+/* Coze-like aesthetics for PluginFormComponent */
+.coze-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 1024px) {
+    .coze-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.coze-main, .coze-side {
+    width: 100%;
+}
+
+.coze-form {
+    width: 100%;
+}
+
+.coze-card {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(20, 0, 50, 0.06);
+    background: #fff;
+    margin-bottom: 12px;
+}
+
+.coze-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.coze-list-row {
+    align-items: center;
+}
+
+.coze-param-row {
+    margin-bottom: 8px;
+}
+
+.coze-preview-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.coze-preview-block {
+    margin-top: 12px;
+}

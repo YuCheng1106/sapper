@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* 移除所有浏览器默认的密码显示/隐藏按钮 */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-webkit-reveal,
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-caps-lock-indicator {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  position: absolute;
+  right: -9999px;
+  width: 0;
+  height: 0;
+}
+
+/* 确保输入框不受浏览器默认样式影响 */
+input[type="password"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

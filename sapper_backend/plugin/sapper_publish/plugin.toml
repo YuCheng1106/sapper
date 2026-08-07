@@ -1,0 +1,9 @@
+[plugin]
+summary = '发布管理'
+version = '0.0.1'
+description = 'sapper 发布管理'
+author = 'yucheng'
+
+[app]
+router = ['v1']
+

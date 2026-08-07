@@ -1,0 +1,37 @@
+/* Agent card animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Search input styles */
+.ant-input-search .ant-input {
+    border-color: #E9D7FE;
+    border-radius: 8px;
+}
+
+
+.ant-input-search .ant-input-search-button {
+    border-color: #7F56D9;
+    background-color: #7F56D9;
+    border-radius: 0 8px 8px 0;
+}
+
+.ant-input-search .ant-input-search-button:hover {
+    background-color: #6941C6;
+    border-color: #6941C6;
+}
+
+/* 取消 ant-row 的负边距 */
+.ant-spin-container .ant-row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+

@@ -1,0 +1,46 @@
+/* 分类 Segmented 在窄屏支持换行并避免文字截断 */
+.segmented-full .ant-segmented-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* 行间距更舒适 */
+}
+
+.segmented-full .ant-segmented-item {
+    min-width: 120px; /* 单项最小宽度，避免文字被压缩 */
+    justify-content: center;
+}
+
+.segmented-full .ant-segmented-item-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* 图标与文字间距 */
+}
+
+/* 顶部粘性栏细节优化（轻微阴影与边界色）已在组件中设置，这里保证滚动容器无额外隐藏问题 */
+.sticky {
+    will-change: transform;
+}
+
+/* 简约风：默认深灰字；选中底纹为 #E4E7FF */
+.segmented-full.ant-segmented {
+    background: transparent;
+    border: none;
+
+    box-shadow: none;
+}
+.segmented-full .ant-segmented-item {
+    border-radius: 12px;
+}
+.segmented-full .ant-segmented-item-label {
+    color: #4B5563; /* 默认深灰色 */
+}
+.segmented-full .ant-segmented-thumb {
+    background: #E4E7FF; /* 选中时淡紫底（指定色值） */
+    border-radius: 12px;
+}
+/* 在换行布局下，确保选中项自身也有底纹（防止 thumb 定位异常） */
+.segmented-full .ant-segmented-item-selected {
+    background-color: #E4E7FF !important;
+    border-radius: 12px;
+}
+/* 如需选中文本加深，可在此处再添加颜色规则 */

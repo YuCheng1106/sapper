@@ -1,0 +1,9 @@
+[plugin]
+summary = '知识库管理'
+version = '0.0.1'
+description = 'sapper 知识库管理'
+author = 'yucheng'
+
+[app]
+router = ['v1']
+

@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "chunk_data_server": {
+      "command": "uv",
+      "args": [
+        "run",
+        "E:\\public_tech_lib\\data_module\\server_module\\chunk_server"
+      ]
+    },
+    "retrieve_data_server": {
+      "command": "uv",
+      "args": [
+        "run",
+        "E:\\public_tech_lib\\data_module\\server_module\\retrieve_server"
+      ]
+    }
+  }
+}

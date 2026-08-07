@@ -1,0 +1,8 @@
+.env
+create_backend_structure.sh
+.idea/
+privkey.key
+fullchain.pem
+files/
+__pycache__/
+ssl/

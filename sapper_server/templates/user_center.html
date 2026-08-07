@@ -1,0 +1,154 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <style>-->
+<!--        * {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--        }-->
+
+<!--        body {-->
+<!--            background-color: #1F1107;-->
+<!--        }-->
+
+<!--        .information {-->
+<!--            width: 600px;-->
+<!--            margin: 0 auto;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--        }-->
+
+<!--        .img-box {-->
+<!--            width: 40px;-->
+<!--            height: 40px;-->
+<!--            position: relative;-->
+<!--            border-radius: 50%;-->
+<!--            border: 2px solid #fff;-->
+<!--            cursor: pointer;-->
+<!--            transition: .4s;-->
+<!--        }-->
+
+<!--        .img-box:hover {-->
+<!--            width: 100px;-->
+<!--            height: 100px;-->
+<!--        }-->
+
+<!--        .img-box:hover .menu {-->
+<!--            opacity: 1;-->
+<!--            width: 300px;-->
+<!--            height: 200px;-->
+<!--        }-->
+
+<!--        .img-box img {-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            border-radius: 50%;-->
+<!--            position: relative;-->
+<!--            z-index: 1;-->
+<!--        }-->
+
+<!--        .menu {-->
+<!--            background-color: #fff;-->
+<!--            position: absolute;-->
+<!--            top: 60%;-->
+<!--            left: 50%;-->
+<!--            transform: translatex(-50%);-->
+<!--            border-radius: 10px;-->
+<!--            opacity: 0;-->
+<!--            transition: .3s;-->
+<!--        }-->
+
+<!--        .menu-item {-->
+<!--            width: 100%;-->
+<!--            height: 50px;-->
+<!--            line-height: 50px;-->
+<!--            text-align: center;-->
+<!--            border-bottom: 1px solid #ccc;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="header">-->
+<!--    <div class="information">-->
+<!--        <div class="img-box">-->
+<!--            <img src="../static/image/img/user.png" alt="">-->
+<!--            <div class="menu">-->
+<!--                <div class="menu-item">-->
+<!--                    <a></a>-->
+<!--                </div>-->
+<!--                <div class="menu-item">-->
+<!--                    <a href="/user_center">个人中心</a>-->
+<!--                </div>-->
+<!--                <div class="menu-item">-->
+<!--                    <a href="/get_key">Key:</a>-->
+<!--                    <input type="text" placeholder="请将购买的Key填入此处" id="Key_id">-->
+<!--                </div>-->
+<!--                <div class="menu-item">-->
+<!--                    <a href="/logout">退出登录</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面标题</title>
+    <style>
+        body, html {
+            margin-left: 10%;
+            width: 80%;
+            height: 80%;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            height: 100%;
+        }
+
+        .sidebar {
+            background-color: #f2f2f2;
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content {
+            background-color: #e6e6e6;
+            width: 80%;
+        }
+
+        /* 样式仅作示例，请根据实际需要修改 */
+        .avatar {
+            margin-top: 20px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .module {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <img src="../static/image/img/user.png" alt="用户头像" class="avatar">
+        <div class="module">个人中心</div>
+        <div class="module">获取KEY模块</div>
+    </div>
+    <div class="content"></div>
+</div>
+</body>
+</html>

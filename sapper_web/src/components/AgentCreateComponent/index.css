@@ -1,0 +1,92 @@
+.annotation-type-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.annotation-type-option {
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.annotation-type-option.active {
+  text-decoration: underline;
+}
+
+.container.dragging {
+  cursor: move;
+}
+
+/*.field-and-nav {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*  position: relative; !* This allows the navigation bar to be positioned relative to the field. *!*/
+/*}*/
+
+/*.nav-bar {*/
+/*  width: 100px; !* Adjust as needed. *!*/
+/*  padding: 10px;*/
+/*  background-color: #eee; !* Adjust as needed. *!*/
+/*  border: 1px solid #ddd; !* Adjust as needed. *!*/
+/*  height: 100%; !* This makes the navigation bar as tall as the field. *!*/
+/*}*/
+
+.floating {
+  position: sticky; /* Make it float over the content as you scroll. */
+  top: 0; /* Adjust as needed. This determines the position of the nav bar when it's floating. */
+  z-index: 1; /* Make it float on top of other content. You might need to adjust this depending on your layout. */
+}
+
+.custom-navbar {
+  /*top: 50px;*/
+  /*width: 30px;*/
+  background-color: #86b7fe;
+  border-radius: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.custom-navbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-navbar::-webkit-scrollbar-thumb {
+  background-color: #6c757d;
+  border-radius: 3px;
+}
+
+.nav-item{
+  padding-top: 10px;
+  padding-left: 5px;
+}
+
+.circle {
+    margin-top: 3px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    font-size: 12px;
+    color: black;
+    line-height: 18px;
+    text-align: center;
+    background: #f0ebf8;
+}
+
+.section-message{
+    font-size: 15px;
+    padding-top: 2px;
+    padding-left: 5px;
+    text-align: center;
+    color: #344964;
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000; /* Ensures it stays on top */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: adds shadow for better separation */
+}

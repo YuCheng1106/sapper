@@ -1,0 +1,31 @@
+provider-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+
+    .provider-name {
+        flex: 1;
+        margin: 0 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .status-tag {
+        margin-right: 8px;
+    }
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.active-model-item {
+    transition: all 0.3s ease;
+    background-color: #f6ffed;
+    border-left: 3px solid #52c41a;
+    padding-left: 8px;
+}

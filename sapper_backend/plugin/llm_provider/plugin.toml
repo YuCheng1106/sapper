@@ -1,0 +1,9 @@
+[plugin]
+summary = '模型提供商'
+version = '0.0.1'
+description = '大模型提供商'
+author = 'yucheng'
+
+[app]
+router = ['v1']
+

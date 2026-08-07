@@ -1,0 +1,7 @@
+__pycache__/
+.env
+static/media/
+*.log
+celerybeat-schedule.*
+.idea/
+ssl/
