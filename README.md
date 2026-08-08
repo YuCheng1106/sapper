@@ -503,7 +503,9 @@ If Sapper helps with your Agent development work, consider giving it a Star, try
 
 <p>
   <a href="https://github.com/SE-qinghuang"><img src="https://github.com/SE-qinghuang.png?size=120" width="72" height="72" alt="SE-qinghuang" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
-  <a href="https://github.com/CodingFeng101"><img src="https://avatars.githubusercontent.com/u/152643312?s=60&v=4?size=120" width="72" height="72" alt="CodingFeng101" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
+  <a href="https://github.com/docshun"><img src="https://github.com/docshun.png?size=120" width="72" height="72" alt="CodingFeng101" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
+  <a href="https://github.com/6chenhua"><img src="https://github.com/6chenhua.png?size=120" width="72" height="72" alt="CodingFeng101" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
+  <a href="https://github.com/CodingFeng101"><img src="https://github.com/CodingFeng101.png?size=120" width="72" height="72" alt="CodingFeng101" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
   <a href="https://github.com/lixian292"><img src="https://github.com/lixian292.png?size=120" width="72" height="72" alt="lixian292" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
   <a href="https://github.com/LiKunKun64867"><img src="https://github.com/LiKunKun64867.png?size=120" width="72" height="72" alt="LiKunKun64867" style="border-radius:50%; border:1px solid #d0d7de;" /></a>
 </p>
