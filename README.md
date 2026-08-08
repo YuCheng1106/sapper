@@ -495,3 +495,15 @@ Third-party components in this repository remain subject to their own licenses. 
 If Sapper helps with your Agent development work, consider giving it a Star, trying it out, and sharing your feedback.
 
 </div>
+
+
+## 🙏 Acknowledgements
+
+- **Project contributors:**
+
+<p>
+  <a href="https://github.com/SE-qinghuang"><img src="https://github.com/SE-qinghuang.png?size=120" width="72" height="72" alt="SE-qinghuang" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
+  <a href="https://github.com/CodingFeng101"><img src="https://avatars.githubusercontent.com/u/152643312?s=60&v=4?size=120" width="72" height="72" alt="CodingFeng101" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
+  <a href="https://github.com/lixian292"><img src="https://github.com/lixian292.png?size=120" width="72" height="72" alt="lixian292" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
+  <a href="https://github.com/LiKunKun64867"><img src="https://github.com/LiKunKun64867.png?size=120" width="72" height="72" alt="LiKunKun64867" style="border-radius:50%; border:1px solid #d0d7de;" /></a>
+</p>

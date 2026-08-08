@@ -495,3 +495,15 @@ Sapper 原创代码采用 [Apache License 2.0](LICENSE) 开源。你可以在遵
 如果 Sapper 对你的 Agent 开发工作有帮助，欢迎 Star、试用并分享反馈。
 
 </div>
+
+
+## 🙏 致谢
+
+- **项目贡献者们：**
+
+<p>
+  <a href="https://github.com/SE-qinghuang"><img src="https://github.com/SE-qinghuang.png?size=120" width="72" height="72" alt="SE-qinghuang" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
+  <a href="https://github.com/CodingFeng101"><img src="https://avatars.githubusercontent.com/u/152643312?s=60&v=4?size=120" width="72" height="72" alt="CodingFeng101" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
+  <a href="https://github.com/lixian292"><img src="https://github.com/lixian292.png?size=120" width="72" height="72" alt="lixian292" style="border-radius:50%; border:1px solid #d0d7de; margin-right:8px;" /></a>
+  <a href="https://github.com/LiKunKun64867"><img src="https://github.com/LiKunKun64867.png?size=120" width="72" height="72" alt="LiKunKun64867" style="border-radius:50%; border:1px solid #d0d7de;" /></a>
+</p>
